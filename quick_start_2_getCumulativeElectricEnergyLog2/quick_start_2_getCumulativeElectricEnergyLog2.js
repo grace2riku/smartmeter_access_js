@@ -1,25 +1,8 @@
 const Wisunrb = require('node-wisunrb');
 
-const fs = require('fs');
-
-// ファイルを読み込む関数
-function readConfig(filePath) {
-    const content = fs.readFileSync(filePath, 'utf8');
-    const lines = content.split('\n');
-    const config = {};
-
-    lines.forEach(line => {
-        const [key, value] = line.split(':');
-        if (key && value) {
-            config[key.trim()] = value.trim();
-        }
-    });
-
-    return config;
-}
-
+var config_file = require('../wisunrb_config');
 // config.txtから設定を読み込む
-const config = readConfig('../config.txt');
+const config = config_file.readConfig('../config.txt');
 
 // Wisunrb オブジェクトを生成
 const wisunrb = new Wisunrb({
